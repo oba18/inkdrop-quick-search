@@ -1,0 +1,57 @@
+/* Keep the note title readable; the body snippet takes the remaining space. */
+.telescope-source-quick-search-notes .telescope-option-label {
+  flex-shrink: 0;
+  max-width: 60%;
+}
+.telescope-source-quick-search-notes .telescope-option-detail {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Notebook name stays at the far right, after the tags and task info. */
+.telescope-source-quick-search-notes .telescope-option-accessory {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.telescope-source-quick-search-notes .telescope-option-type {
+  order: 1;
+}
+
+.quick-search-accessory {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.quick-search-accessory .ui.tag.label {
+  margin: 0;
+}
+.quick-search-priority {
+  font-size: 0.85em;
+  letter-spacing: -2px;
+}
+/* Same colors as the reminder plugin's due badge */
+.quick-search-due {
+  padding: 0 7px;
+  border-radius: 10px;
+  font-size: 0.85em;
+  line-height: 1.6;
+  background: rgba(71, 114, 250, 0.12);
+  color: #4772fa;
+}
+.quick-search-due.today {
+  background: rgba(230, 150, 30, 0.16);
+  color: #e6961e;
+}
+.quick-search-due.overdue {
+  background: rgba(229, 83, 75, 0.14);
+  color: #e5534b;
+}
+.quick-search-due.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

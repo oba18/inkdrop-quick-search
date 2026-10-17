@@ -1,0 +1,13 @@
+{
+  "menu": [
+    {
+      "label": "Plugins",
+      "submenu": [
+        {
+          "label": "Quick Search",
+          "submenu": [{ "label": "ノートを検索", "command": "quick-search:open" }]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "body": {
+    "cmd-o": "quick-search:open"
+  },
+  ".telescope-bar input": {
+    "ctrl-n": "core:select-next-item",
+    "ctrl-p": "core:select-prev-item"
+  }
+}
