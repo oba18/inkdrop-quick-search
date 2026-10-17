@@ -10,7 +10,7 @@ Inkdrop の「設定 → Plugins」で `quick-search` を検索してインス�
 ipm install quick-search
 ```
 
-Inkdrop 6 以降のデスクトップ版で動きます。
+Inkdrop 6 以降のデスクトップ版で動きます。ショートカットは macOS 用です（Windows / Linux ではメニュー「Plugins」やコマンドから使えます）。
 
 ## 使い方
 
