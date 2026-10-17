@@ -1,5 +1,7 @@
 # quick-search
 
+**English** | [日本語](#日本語)
+
 A Raycast-style note finder for Inkdrop. Open it with a shortcut and narrow down notes by title and full-text search.
 
 ## Installation
@@ -60,5 +62,74 @@ npm run typecheck
 During development, put a symlink named `quick-search` to this directory in Inkdrop's packages folder (`~/Library/Application Support/inkdrop/packages/` on macOS) to load it.
 
 ## License
+
+MIT
+
+---
+
+# 日本語
+
+[English](#quick-search) | **日本語**
+
+Raycast のような窓でノートを探す Inkdrop プラグインです。ショートカットで開き、タイトルと本文の全文検索でノートを絞り込んで開けます。
+
+## インストール
+
+Inkdrop の「設定 → Plugins」で `quick-search` を検索してインストールするか、ターミナルで:
+
+```sh
+ipm install quick-search
+```
+
+Inkdrop 6 以降のデスクトップ版で動きます。ショートカットは macOS 用です（Windows / Linux ではメニュー「Plugins」やコマンドから使えます）。
+
+## 使い方
+
+| 操作 | 動作 |
+| --- | --- |
+| `Cmd+O`、メニュー Plugins › Quick Search | 検索窓を開く（何も入力しなければ最近更新したノート） |
+| `Cmd+K` のあと `n` + スペース | 同じ検索を Inkdrop 標準の Telescope から使う |
+| `Ctrl+N` / `Ctrl+P`（`↓` / `↑` も可） | 次 / 前の候補を選ぶ（`Cmd+K` の Telescope 全体で有効） |
+| `Ctrl+F` / `Ctrl+B` / `Ctrl+A` / `Ctrl+E` など | 入力欄のカーソル移動（macOS 標準の Emacs 風キー） |
+| `Enter` | ノートを開く |
+| `Cmd+Enter` | 別ウィンドウで開く |
+| `Shift+Enter` | ノートへのリンクをコピー |
+
+各行には、ノートのタイトル（一致した箇所をハイライト）、本文で一致した行の抜粋、タグ、タスクの優先度と期限、ノートブック名が表示されます。
+
+### タスクの優先度と期限
+
+[reminder](https://github.com/oba18/inkdrop-reminder) プラグインの書式（`- [ ] … ⭐⭐ ⏰2026-10-20 15:00`、ノートの期限は `⏰…` だけの行）を読み取ります。
+
+- 検索語が**タスクの行**に一致したときは、そのタスクの ⭐ と ⏰
+- それ以外は、ノートの期限（なければ未完了タスクで最も早い期限）と、未完了タスクの最高の優先度
+- 期限は、過ぎていれば赤、今日ならオレンジで表示します。完了したタスクや Completed / Dropped のノートの期限は取り消し線になります
+- 見出しや表に飾りとして書いた ⭐ は優先度として扱いません
+
+## 検索のしくみ
+
+- **本文**: Inkdrop の全文検索インデックス（`db.utils.search`）。日本語の部分一致、英単語の前方一致、スペース区切りの AND 検索に対応しています
+- **タイトル**: ノートのタイトルをメモリに保持し、部分一致で探します（`ocker` で `docker_generate` も見つかります）。ノートが変更されると作り直します
+- **並び順**: タイトルが検索語と同じ → 検索語で始まる → 全ての語を含む（この3つは更新日の新しい順）→ 全文検索でタイトルに一致 → 本文だけに一致（関連度順）
+- Completed / Dropped のノートも検索対象です。ゴミ箱のノートは出ません
+
+## 設定
+
+| 項目 | 内容 |
+| --- | --- |
+| 検索結果に出さないノートブック | ノートブック名をカンマ区切りで。配下のノートブックも除外されます |
+| 表示する件数の上限 | 既定 50 件 |
+
+## 開発
+
+```sh
+npm install
+npm run build      # lib/ に出力
+npm run typecheck
+```
+
+開発中は、Inkdrop のプラグインフォルダ（macOS では `~/Library/Application Support/inkdrop/packages/`）に `quick-search` という名前でこのディレクトリへのシンボリックリンクを置くと読み込まれます。
+
+## ライセンス
 
 MIT
