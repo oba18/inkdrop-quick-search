@@ -40,16 +40,16 @@
   border-radius: 10px;
   font-size: 0.85em;
   line-height: 1.6;
-  background: rgba(71, 114, 250, 0.12);
-  color: #4772fa;
+  background: color-mix(in srgb, var(--color-blue-500, #4772fa) 12%, transparent);
+  color: var(--color-blue-500, #4772fa);
 }
 .quick-search-due.today {
-  background: rgba(230, 150, 30, 0.16);
-  color: #e6961e;
+  background: color-mix(in srgb, var(--color-orange-500, #e6961e) 16%, transparent);
+  color: var(--color-orange-500, #e6961e);
 }
 .quick-search-due.overdue {
-  background: rgba(229, 83, 75, 0.14);
-  color: #e5534b;
+  background: color-mix(in srgb, var(--color-red-500, #e5534b) 14%, transparent);
+  color: var(--color-red-500, #e5534b);
 }
 .quick-search-due.done {
   opacity: 0.5;
