@@ -1,6 +1,6 @@
 {
   "name": "quick-search",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Raycast-style note finder: search notes by title and full text from a shortcut",
   "keywords": [
     "inkdrop",
