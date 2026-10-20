@@ -11,6 +11,7 @@ import type { Note } from 'inkdrop-model'
 import { Accessory, type TagView } from './accessory'
 import { getConfig, getEnv } from './env'
 import { stripMarkers, taskInfo } from './task-info'
+import { tr } from './i18n'
 
 export const SOURCE_ID = 'quick-search-notes'
 
@@ -122,7 +123,7 @@ function snippet(
 export class NoteSource extends TelescopeSource {
   id = SOURCE_ID
   name = 'Notes'
-  description = 'ノートをタイトルと全文で検索'
+  description = tr('Search notes by title and full text', 'ノートをタイトルと全文で検索')
   defaultAlias = 'n'
 
   private titles: TitleEntry[] | null = null
@@ -260,7 +261,7 @@ export class NoteSource extends TelescopeSource {
     const tagHash: Record<string, TagView> = state.tags?.hash ?? {}
     const ranges = new Map(hits.map(h => [h.note._id, h.ranges]))
     const options: TelescopeSourceItem[] = hits.map(({ note, bodyHighlights }) => {
-      const title = note.title || '無題'
+      const title = note.title || tr('Untitled', '無題')
       const match = snippet(note.body, bodyHighlights, words, title)
       const tags = (note.tags ?? []).flatMap(id => (tagHash[id] ? [tagHash[id]] : []))
       const task = taskInfo(note.body, match.line)
@@ -276,9 +277,9 @@ export class NoteSource extends TelescopeSource {
         icon: NOTE_ICON,
         accessoryView: tags.length || task ? () => createElement(Accessory, { tags, task }) : undefined,
         actions: [
-          { type: 'open', label: 'ノートを開く' },
-          { type: 'open-window', label: '別ウィンドウで開く', modifierKeys: ['cmd-or-ctrl' as any] },
-          { type: 'copy-link', label: 'リンクをコピー', modifierKeys: ['shift' as any] }
+          { type: 'open', label: tr('Open note', 'ノートを開く') },
+          { type: 'open-window', label: tr('Open in new window', '別ウィンドウで開く'), modifierKeys: ['cmd-or-ctrl' as any] },
+          { type: 'copy-link', label: tr('Copy link', 'リンクをコピー'), modifierKeys: ['shift' as any] }
         ]
       }
     })

@@ -1,4 +1,5 @@
 import { type TaskInfo, dueState, formatDue } from './task-info'
+import { tr } from './i18n'
 
 export interface TagView {
   name: string
@@ -16,7 +17,7 @@ export function Accessory({ tags, task }: { tags: TagView[]; task: TaskInfo | nu
         </span>
       ))}
       {task?.priority ? (
-        <span className="quick-search-priority" title={`優先度 ${task.priority}`}>
+        <span className="quick-search-priority" title={tr(`Priority ${task.priority}`, `優先度 ${task.priority}`)}>
           {'⭐'.repeat(task.priority)}
         </span>
       ) : null}

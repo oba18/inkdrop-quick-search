@@ -10,6 +10,11 @@ export function setEnv(env: Environment | undefined): void {
   captured = env
 }
 
+/** The env, or `undefined` before activate / after deactivate. */
+export function peekEnv(): Environment | undefined {
+  return captured
+}
+
 export function getEnv(): Environment {
   if (!captured) throw new Error('[quick-search] env accessed before activate()')
   return captured

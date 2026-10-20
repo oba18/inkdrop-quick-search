@@ -20,7 +20,6 @@
   "files": [
     "lib",
     "keymaps",
-    "menus",
     "styles"
   ],
   "scripts": {

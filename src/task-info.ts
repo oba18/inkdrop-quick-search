@@ -1,3 +1,5 @@
+import { lang } from './i18n'
+
 /**
  * Reads the due dates and priorities written by the reminder plugin
  * (`~/dev/inkdrop-reminder`, see its `src/parse.ts`):
@@ -113,9 +115,13 @@ export function dueState(due: Due, done: boolean): 'overdue' | 'today' | null {
 /** `10/20 15:00`, `10/20〜10/23`; the year only when it isn't this year */
 export function formatDue(due: Due): string {
   const year = String(new Date().getFullYear())
+  const ja = lang() === 'ja'
   const md = (date: string) => {
     const [y, mo, d] = date.split('-')
-    return `${y === year ? '' : `${y}/`}${Number(mo)}/${Number(d)}`
+    const short = `${Number(mo)}/${Number(d)}`
+    if (y === year) return short
+    return ja ? `${y}/${short}` : `${short}/${y}`
   }
-  return `${due.start ? `${md(due.start)}〜` : ''}${md(due.date)}${due.time ? ` ${due.time}` : ''}`
+  const range = ja ? '〜' : ' – '
+  return `${due.start ? `${md(due.start)}${range}` : ''}${md(due.date)}${due.time ? ` ${due.time}` : ''}`
 }
